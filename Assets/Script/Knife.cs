@@ -31,6 +31,7 @@ public class Knife : MonoBehaviour
             gameObject.transform.SetParent(other.transform);
             rb.velocity = Vector3.zero;
             onBoard = true;
+            // rb.detectCollisions = false; ยกเลิก Detect การชน
             gc.SpawnKnife();
             gc.AddScore();
         }
