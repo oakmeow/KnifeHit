@@ -31,17 +31,23 @@ public class GameController : MonoBehaviour
         {
             ResumeGame();
         }
-        if (Input.GetKeyDown(KeyCode.PageUp))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
-            board.SpeedUp();
-            GameObject message = Instantiate(messageTxt, canvas);
-            message.GetComponent<TextMeshProUGUI>().text = board.GetSpeedText();
+            if (Input.GetKeyDown(KeyCode.PageUp))
+            {
+                board.SpeedUp();
+                GameObject message = Instantiate(messageTxt, canvas);
+                message.GetComponent<TextMeshProUGUI>().text = board.GetSpeedText();
+            }
         }
-        if (Input.GetKeyDown(KeyCode.PageDown))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
-            board.SpeedDown();
-            GameObject message = Instantiate(messageTxt, canvas);
-            message.GetComponent<TextMeshProUGUI>().text = board.GetSpeedText();
+            if (Input.GetKeyDown(KeyCode.PageDown))
+            {
+                board.SpeedDown();
+                GameObject message = Instantiate(messageTxt, canvas);
+                message.GetComponent<TextMeshProUGUI>().text = board.GetSpeedText();
+            }
         }
     }
 

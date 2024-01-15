@@ -36,6 +36,6 @@ public class Board : MonoBehaviour
     public string GetSpeedText()
     {
         // 
-        return "speed[ " + Mathf.Round(speed * 10) * 0.1 + " ]";
+        return "Administrator : speed[ " + Mathf.Round(speed * 10) * 0.1 + " ]";
     }
 }
