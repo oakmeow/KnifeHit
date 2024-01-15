@@ -24,10 +24,6 @@ public class Knife : MonoBehaviour
         {
             rb.velocity = new Vector3(0f, speed, 0f);
         }
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            gc.ResumeGame();
-        }
     }
 
     private void OnTriggerEnter(Collider other)

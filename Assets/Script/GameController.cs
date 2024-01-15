@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using System;
+using UnityEditor.VersionControl;
 
 public class GameController : MonoBehaviour
 {
@@ -14,12 +15,34 @@ public class GameController : MonoBehaviour
     public GameObject background;
     public Board board;
     public GameObject gameover;
+    public Transform canvas;
+    public GameObject messageTxt;
 
     void Start()
     {
         score = 0;
 
         RandomBackground();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            ResumeGame();
+        }
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            board.SpeedUp();
+            GameObject message = Instantiate(messageTxt, canvas);
+            message.GetComponent<TextMeshProUGUI>().text = board.GetSpeedText();
+        }
+        if (Input.GetKeyDown(KeyCode.PageDown))
+        {
+            board.SpeedDown();
+            GameObject message = Instantiate(messageTxt, canvas);
+            message.GetComponent<TextMeshProUGUI>().text = board.GetSpeedText();
+        }
     }
 
     public void SpawnKnife()
@@ -37,8 +60,8 @@ public class GameController : MonoBehaviour
     public void RandomBackground()
     {
         int background_count = background.transform.childCount;
-        int random_backgound = Random.Range(0, background_count);
-        Debug.Log(random_backgound + " / " + background_count);
+        int random_backgound = UnityEngine.Random.Range(0, background_count);
+        
         for (int i = 0; i< background_count; i++)
         {
             if (i == random_backgound)
