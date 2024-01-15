@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Knife : MonoBehaviour
 {
-    public float speed = 5f;
     private Rigidbody rb;
     private bool onBoard;
     private GameController gc;
+
+    // Config
+    private float speed = 5f;
 
     void Start()
     {
@@ -22,6 +24,10 @@ public class Knife : MonoBehaviour
         {
             rb.velocity = new Vector3(0f, speed, 0f);
         }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            gc.ResumeGame();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,13 +37,13 @@ public class Knife : MonoBehaviour
             gameObject.transform.SetParent(other.transform);
             rb.velocity = Vector3.zero;
             onBoard = true;
-            // rb.detectCollisions = false; ยกเลิก Detect การชน
+            //rb.detectCollisions = false; // ยกเลิก Detect การชน
             gc.SpawnKnife();
             gc.AddScore();
         }
         if (other.gameObject.tag == "Knife")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            gc.PauseGame();
         }
     }
 }
